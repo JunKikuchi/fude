@@ -10,6 +10,9 @@ Fude is inspired by Hiccup <https://github.com/weavejester/hiccup>
 Here is a basic example of Fude syntax:
 
 ```python
+>>> fude.html('text')
+'text'
+
 >>> fude.html(['tag'])
 '<tag />'
 
