@@ -31,4 +31,4 @@ def html(data):
         else:
             return '<%s%s />' % (tag, attrs)
     else:
-        return data
+        return str(data)

@@ -16,6 +16,10 @@ class HTMLTextCase(unittest.TestCase):
         expt = '<tag />'
         self.assertEqual(html(data), expt)
 
+        data = ['100']
+        expt = '<100 />'
+        self.assertEqual(html(data), expt)
+
         data = ['tag#id']
         expt = '<tag id="id" />'
         self.assertEqual(html(data), expt)
@@ -92,6 +96,10 @@ class HTMLTextCase(unittest.TestCase):
     def test_complex_tags(self):
         data = [['a'], ['b'], [''], []]
         expt = '<a /><b /><div />'
+        self.assertEqual(html(data), expt)
+
+        data = [['a', '100'], ['b', 200], [''], []]
+        expt = '<a>100</a><b>200</b><div />'
         self.assertEqual(html(data), expt)
 
         data = ['html', []]
