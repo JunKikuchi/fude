@@ -10,8 +10,20 @@ Fude is inspired by Hiccup <https://github.com/weavejester/hiccup>
 Here is a basic example of Fude syntax:
 
 ```python
+>>> fude.html(['tag'])
+'<tag />'
+
+>>> fude.html(['div', 'bar'])
+'<div>bar</div>'
+
 >>> fude.html(['span', {'class': 'foo'}, 'bar'])
 '<span class="foo">bar</span>'
+
+>>> fude.html(['div', 'bar', ['span', 'baz'], ['span', 'bang']])
+'<div>bar<span>baz</span><span>bang</span></div>'
+
+>>> fude.html(['div', 'bar', [['span', 'baz'], ['span', 'bang']]])
+'<div>bar<span>baz</span><span>bang</span></div>'
 ```
 
 The first element of the List is used as the element name. The second
@@ -25,6 +37,7 @@ attributes:
 ```python
 >>> fude.html(['div#foo.bar.baz', 'bang'])
 '<div class="bar baz" id="foo">bang</div>'
+
 >>> fude.html(['#foo.bar.baz', 'bang'])
 '<div class="bar baz" id="foo">bang</div>'
 ```
