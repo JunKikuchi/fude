@@ -30,7 +30,7 @@ attributes:
 ```
 
 If the body of the element is a List, its contents will be expanded out
-into the element body. This makes working with forms like `map` and
+into the element body. This makes working with functions like `map` and
 `List comprehensions`:
 
 ```python
