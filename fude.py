@@ -9,7 +9,7 @@ def html(data):
 
         xs_class = data.pop(0).split('.')
         xs_id = xs_class.pop(0).split('#')
-        tag = xs_id.pop(0)
+        tag = xs_id.pop(0) or 'div'
 
         _attrs = {}
         if xs_id <> []:

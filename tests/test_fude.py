@@ -52,9 +52,46 @@ class HTMLTextCase(unittest.TestCase):
         expt = '<tag class="CLASS" data="aaa" id="ID" />'
         self.assertEqual(html(data), expt)
 
+    def test_abbr_tag(self):
+        data = ['#id']
+        expt = '<div id="id" />'
+        self.assertEqual(html(data), expt)
+
+        data = ['.class']
+        expt = '<div class="class" />'
+        self.assertEqual(html(data), expt)
+
+        data = ['.class.a']
+        expt = '<div class="class a" />'
+        self.assertEqual(html(data), expt)
+
+        data = ['#id.class']
+        expt = '<div class="class" id="id" />'
+        self.assertEqual(html(data), expt)
+
+        data = ['#id.class.a']
+        expt = '<div class="class a" id="id" />'
+        self.assertEqual(html(data), expt)
+
+        data = ['', {'data': 'aaa'}]
+        expt = '<div data="aaa" />'
+        self.assertEqual(html(data), expt)
+
+        data = ['', {'data': 'aaa', 'id': 'id', 'class': 'class'}]
+        expt = '<div class="class" data="aaa" id="id" />'
+        self.assertEqual(html(data), expt)
+
+        data = ['#id.class', {'data': 'aaa'}]
+        expt = '<div class="class" data="aaa" id="id" />'
+        self.assertEqual(html(data), expt)
+
+        data = ['#id.class', {'data': 'aaa', 'id': 'ID', 'class': 'CLASS'}]
+        expt = '<div class="CLASS" data="aaa" id="ID" />'
+        self.assertEqual(html(data), expt)
+
     def test_complex_tags(self):
-        data = [['a'], ['b']]
-        expt = '<a /><b />'
+        data = [['a'], ['b'], [''], []]
+        expt = '<a /><b /><div />'
         self.assertEqual(html(data), expt)
 
         data = ['html', []]
