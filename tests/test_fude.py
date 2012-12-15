@@ -12,6 +12,15 @@ class HTMLTextCase(unittest.TestCase):
         expt = '<tag class="&lt;&gt;" id="&lt;&gt;" />'
         self.assertEqual(html(data), expt)
 
+    def test_text(self):
+        data = ''
+        expt = ''
+        self.assertEqual(html(data), expt)
+
+        data = 'text'
+        expt = 'text'
+        self.assertEqual(html(data), expt)
+
     def test_tag(self):
         data = []
         expt = ''
