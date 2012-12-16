@@ -3,12 +3,12 @@ from distutils.core import setup
 setup(
     name = "fude",
     py_modules = ["fude"],
-    version = "1.0.0",
+    version = "1.0.1",
     description = "Library for rendering HTML in Python",
     author = "Jun Kikuchi",
     author_email = "kikuchi@bonnou.com",
     url = "https://github.com/JunKikuchi/fude",
-    download_url = "http://pypi.python.org/packages/source/f/fude/fude-1.0.0.tar.gz",
+    download_url = "http://pypi.python.org/packages/source/f/fude/fude-1.0.1.tar.gz",
     keywords = ["html"],
     classifiers = [
         "Programming Language :: Python",
