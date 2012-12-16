@@ -7,6 +7,7 @@ from xml.sax.saxutils import escape
 
 def html(data):
     if isinstance(data, list):
+        data = list(data)
         if data == []:
             return ''
         if isinstance(data[0], list):
