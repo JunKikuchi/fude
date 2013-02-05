@@ -1,9 +1,10 @@
 #  fude.py
 #
 #  Created by Jun Kikuchi
-#  Copyright (c) 2012 Jun Kikuchi. All rights reserved.
+#  Copyright (c) 2012-2013 Jun Kikuchi. All rights reserved.
 #
 from xml.sax.saxutils import escape
+import types
 
 def html(data):
     if isinstance(data, list):
@@ -36,5 +37,7 @@ def html(data):
             return '<%s%s>%s</%s>' % (tag, attrs, ''.join(container), tag)
         else:
             return '<%s%s />' % (tag, attrs)
+    if isinstance(data, types.FunctionType):
+        return data()
     else:
-        return str(data)
+        return escape(str(data))

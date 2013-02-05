@@ -1,12 +1,25 @@
 #  test_fude.py
 #
 #  Created by Jun Kikuchi
-#  Copyright (c) 2012 Jun Kikuchi. All rights reserved.
+#  Copyright (c) 2012-2013 Jun Kikuchi. All rights reserved.
 #
 import unittest
 from fude import html
 
 class HTMLTextCase(unittest.TestCase):
+    def test_escape(self):
+        data = ['tag', '<>']
+        expt = '<tag>&lt;&gt;</tag>'
+        self.assertEqual(html(data), expt)
+
+        data = ['tag', '&copy;']
+        expt = '<tag>&amp;copy;</tag>'
+        self.assertEqual(html(data), expt)
+
+        data = ['tag', lambda: '&copy;']
+        expt = '<tag>&copy;</tag>'
+        self.assertEqual(html(data), expt)
+
     def test_escape_attrs(self):
         data = ['tag#<>.<>']
         expt = '<tag class="&lt;&gt;" id="&lt;&gt;" />'
