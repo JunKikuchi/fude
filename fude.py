@@ -19,20 +19,24 @@ def html(data):
         tag = xs_id.pop(0) or 'div'
 
         _attrs = {}
-        if xs_id <> []:
+        if xs_id != []:
             _attrs['id'] = xs_id.pop(0)
-        if xs_class <> []:
+        if xs_class != []:
             _attrs['class'] = ' '.join(xs_class)
-        if data <> [] and isinstance(data[0], dict):
+        if data != [] and isinstance(data[0], dict):
+            if 'id' in data[0]:
+                _attrs['id'] = data[0].pop('id')
+            if ('class' in data[0]) and ('class' in _attrs):
+                _attrs['class'] += ' ' + data[0].pop('class')
             _attrs.update(data.pop(0))
 
         attrs = ''
-        if _attrs <> {}:
+        if _attrs != {}:
             attrs = ' ' + ' '.join([
-                '%s="%s"' % (escape(k), escape(_attrs[k]))
+                '%s="%s"' % (escape(k), escape(_attrs[k])) if _attrs[k] else escape(k)
                     for k in sorted(_attrs.keys())])
 
-        if data <> []:
+        if data != []:
             container = [html(a) for a in data]
             return '<%s%s>%s</%s>' % (tag, attrs, ''.join(container), tag)
         else:
@@ -40,4 +44,4 @@ def html(data):
     if isinstance(data, types.FunctionType):
         return data()
     else:
-        return escape(str(data))
+        return escape(data)
